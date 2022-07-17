@@ -95,12 +95,3 @@ class Memory {
 
 const mem = new Memory();
 
-// start.addEventListener("click", () => {
-//   const value = prompt(`What's ur name ?`);
-//   if (value === null || value === "") {
-//     UserName.innerHTML = "Unknown";
-//   } else {
-//     UserName.innerHTML = value;
-//   }
-//   start.closest(".control-buttons").style.display = "none";
-// });
