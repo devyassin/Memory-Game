@@ -1,15 +1,41 @@
 "use strict";
 
 // const start = document.querySelector(".control-buttons span");
+
 const UserName = document.querySelector(".name span");
 const blocksContainer = document.querySelector(".memory-game-blocks");
 let triesElement = document.querySelector(".tries span");
+const overlay = document.querySelector(".overlay");
 let duration = 1000;
 
 class Memory {
   blocks = Array.from(blocksContainer.children);
   constructor() {
+    this._popUp();
     this._randomOrder();
+  }
+
+  //Pop up for the user name :
+
+  _popUp() {
+    const { value: Nom } = Swal.fire({
+      title: "Enter your name",
+      input: "text",
+      inputLabel: "Name",
+      inputPlaceholder: "Enter your name",
+      inputAttributes: {
+        maxlength: 10,
+        autocapitalize: "off",
+        autocorrect: "off",
+      },
+    }).then((result) => {
+      if (result.value) {
+        UserName.innerHTML = result.value;
+      } else if (result.value === null || result.value === "") {
+        UserName.innerHTML = "Unknown";
+      }
+      overlay.style.display = "none";
+    });
   }
 
   // random order for cards (change the order randomly each time we reload the page)
@@ -78,4 +104,3 @@ const mem = new Memory();
 //   }
 //   start.closest(".control-buttons").style.display = "none";
 // });
-
