@@ -10,6 +10,7 @@ let duration = 1000;
 
 class Memory {
   blocks = Array.from(blocksContainer.children);
+  win;
   constructor() {
     this._popUp();
     this._randomOrder();
@@ -35,6 +36,7 @@ class Memory {
         UserName.innerHTML = "Unknown";
       }
       overlay.style.display = "none";
+      document.getElementById("welcome").play();
     });
   }
 
@@ -80,6 +82,7 @@ class Memory {
       secondBlock.classList.add("has-much");
 
       document.getElementById("success").play();
+      this._winner();
     } else {
       triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1;
 
@@ -91,7 +94,15 @@ class Memory {
       document.getElementById("fail").play();
     }
   }
+
+  _winner() {
+     this.win = this.blocks.filter((block) =>
+      block.classList.contains("has-much")
+    ).length;
+    if(this.win===20){
+      document.getElementById("win").play();
+    }
+  }
 }
 
 const mem = new Memory();
-
